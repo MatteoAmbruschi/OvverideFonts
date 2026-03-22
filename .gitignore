@@ -1,0 +1,45 @@
+# ── Binaries 
+build/bin/
+# Root-level .exe created by plain `go build` — NOT a valid Wails binary.
+# Always use build/bin/FontOverride.exe produced by `wails build`.
+*.exe
+!build/windows/         # keep manifest / icon / info.json templates
+
+# ── Sensitive: RSA private key used to sign the Chrome extension
+# NEVER commit this — regenerate with: go run ./tools/pack_extension
+build/extension.pem
+
+# ── Bundled fonts (downloaded at build time, not committed to keep repo small)
+# Run: make fonts  (or scripts\download-fonts.ps1) to fetch them.
+assets/fonts/*.ttf
+assets/fonts/*.otf
+assets/fonts/*.woff
+assets/fonts/*.woff2
+
+# ── Go
+# go.sum IS committed (reproducible builds)
+/vendor/
+
+# ── Frontend 
+frontend/node_modules/
+frontend/dist/
+
+# Wails regenerates wailsjs/ at `wails dev` / `wails build`.
+# The stub files we committed allow standalone `npm run build` without Wails.
+# Uncomment the line below only if you want Wails to own these files entirely:
+# frontend/wailsjs/
+
+# ── Wails internal
+.wails/
+
+# ── OS ──────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Editors ─
+.vscode/
+.idea/
+*.suo
+*.user
+*.github
